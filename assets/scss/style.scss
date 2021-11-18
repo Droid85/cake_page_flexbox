@@ -1,0 +1,1202 @@
+@import 'fonts-styles';
+@import 'normalize';
+
+$bg-color: #fbebea;
+$menu-color: #fff;
+$menu-list-color: #e7e7e7;
+$main-text-color: #000;
+$header-tittle-color: #2d2829;
+$advantage-color: #32313d;
+$item-border: #dedede;
+$item-text-color: #383838;
+$btn-color: #f50049;
+$cake-color: #828080;
+$paginator-color: #ddd;
+$filling-color: #2f2f2f;
+$shadow-color: rgba(186,180,186,0.4);
+$btn-shodow-color: rgba(0, 0, 0, 0.16);
+
+@mixin flexbox($dir) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin bg() {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@mixin btn() {
+    height: 50px;
+    border: none;
+    background-color: $btn-color;
+    cursor: pointer;
+    color: $menu-color;
+    text-transform: uppercase;
+    border-radius: 25px;
+    padding: 0;
+}
+
+@mixin border($rad) {
+    border-radius: 50%;
+    border: 5px dotted $header-tittle-color;
+    display: flex;
+    width: $rad;
+    height: $rad;
+    margin: auto;
+}
+
+/*Global styles*/
+
+.body {
+    background-color: $bg-color;
+    font-family: 'Circe', 'Arial', 'Sans-serif';
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: $main-text-color;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    list-style-type: none;
+}
+
+/*Mobile styles*/
+
+@media (min-width: 320px) {
+
+    .wrapper {
+        padding: 0 3%;
+    }
+
+    .header {
+        @include bg();
+        background-position: top;
+        background-size: contain;
+        background-image: url('../images/header-cake-mob.png');
+        min-width: 320px;
+        height: 100vh;
+    }
+
+    .header__logo {
+        display: block;
+        font-weight: bold;
+        font-family: 'Playfair Display';
+        color: $main-text-color;
+        font-size: 16px;
+    }
+
+    .header__navigator__button {
+        width: 18px;
+        height: 14px;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 25px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        position: relative;
+        padding: 0;
+        border-top: 2px solid $main-text-color;
+
+        &::before {
+            content: '';
+            position: absolute;
+            border-bottom: 2px solid $main-text-color;
+            width: 18px;
+            left: 0;
+            bottom: 0;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-bottom: 2px solid $main-text-color;
+            width: 18px;
+            left: 0;
+            bottom: 50%;
+        }
+
+    }
+
+    .header__menu {
+        @include flexbox(row);
+        justify-content: space-between;
+        min-width: 320px;
+        min-height: 40px;
+        background-color: $menu-color;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .header__navigator__menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+    }
+
+    .__navigator__menu__item {
+        border-bottom: 1px solid $item-border;
+        width: 100%;
+        background-color: $menu-list-color;
+        text-align: center;
+        text-transform: uppercase;
+        
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover .__menu__list__link {
+            color: $btn-color;
+        }
+    }
+
+    .__menu__list__link {
+        display: block;
+        width: 100%;
+        height: 40px;
+        color: $item-text-color;
+        padding: 15px 0;
+        box-sizing: border-box;
+    }
+
+    .header__phone {
+        display: none;
+    }
+
+    .header__description {
+        @include flexbox(column);
+        justify-content: flex-start;
+        height: 100%;
+        padding-top: 130px;
+    }
+
+    .header__description__tittle {
+        font-family: 'Playfair Display', 'Arial', 'Sans-serif';
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 40px;
+        width: 180px;
+        margin: 0;
+        text-align: center;
+        color: $header-tittle-color;
+    }
+
+    .__advantages__tittle {
+        font-family: 'Intro Script R H2 Base', 'Arial', 'Sans-serif';
+        text-align: center;
+        color: $advantage-color;
+        font-size: 22px;
+        font-weight: normal;
+        line-height: 78px;
+        margin: 0;
+    }
+
+    .__advantages__paragraph {
+        position: relative;
+        width: 200px;
+        height: 33px;
+        padding-left: 50px;
+        margin: 0;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 33px;
+            height: 33px;
+            top: 0;
+            left: 0;
+            @include bg();
+        }
+    }
+
+    .__advantages__paragraph-ingredients {
+        margin-bottom: 20px;
+
+        &::before {
+            background-image: url('../images/header-ingridients-mob.png');
+        }
+    }
+
+    .__advantages__paragraph-delivery {
+
+        &::before {
+            height: 32px;
+            background-image: url('../images/header-delivery-mob.png');
+        }
+    }
+
+    .header__button {
+        width: 225px;
+        margin-top: 40px;
+        @include btn();
+    }
+
+    .header__navigator {
+        min-height: 40px;
+        display: flex;
+
+        &:hover .header__navigator__menu {
+            display: block;
+        }
+    }
+
+    .main__our-cakes {
+        @include flexbox(column);
+    }
+
+    .main__our-cakes__type-of-cakes {
+        @include flexbox(column);
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .main__our-cakes__tittle {
+        font-size: 24px;
+        line-height: 66px;
+        font-family: 'Playfair Display', 'Arial', 'Sans serif';
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .cacke {
+        margin-bottom: 10px;
+        min-width: 280px;
+        height: 120px;
+        @include bg();
+        background-size: cover;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .__type-of-cakes--classic {
+        background-image: url('../images/classic-cake-mob.jpg');
+    }
+
+    .__type-of-cakes--group {
+        @include flexbox(column);
+        width: 100%;
+    }
+
+    .__type-of-cakes--muss {
+        background-image: url('../images/muss-cake-mob.jpg');
+    }
+
+    .__type-of-cakes--weding {
+        background-image: url('../images/weding-cake-mob.jpg');
+    }
+
+    .__type-of-cakes--childrens {
+        background-image: url('../images/childs-cake-mob.jpg');
+        margin-bottom: 0;
+        order: 1;
+    }
+
+    .__type-of-cakes--mens {
+        background-image: url('../images/mens-cake-mob.jpg');
+    }
+
+    .__type-of-cakes--womens {
+        background-image: url('../images/womens-cake-mob.jpg');
+    }
+
+    .__type-of-cakes__paragraph {
+        color: $header-tittle-color;
+        margin: 0;
+    }
+
+    .__type-of-cakes__paragraph-count {
+        font-size: 12px;
+        color: $cake-color;
+        margin: 0;
+    }
+
+    .__type-of-cakes--link {
+        display: none;
+    }
+
+    .main__order {
+        @include flexbox(column);
+        margin-top: 50px;
+    }
+
+    .main__order__choose-filling, .main__order__size, .main__order__design {
+        @include flexbox(column);
+        background-color: $menu-color;
+        width: 95%;
+        color: $filling-color;
+        padding-top: 20px;
+        padding-bottom: 25px;
+        margin-bottom: 10px;
+    }
+
+    .main__order__tittle {
+        font-size: 24px;
+        width: 220px;
+        text-align: center;
+        line-height: 26px;
+        font-family: 'Playfair Display', 'Arial', 'Sans serif';
+        margin: 0 0 15px 0;
+    }
+
+    .main__order__paragraph {
+        font-size: 22px;
+        font-family: 'Intro Script R H2 Base', 'Arial', 'Sasn serif';
+        margin: 0 0 20px 0;
+    }
+
+    .__order__choose-filling__tittle, .__order__size__tittle, .__order__design__tittle {
+        font-size: 16px;
+        color: $btn-color;
+        font-family: 'Playfair Display', 'Arial', 'Sans serif';
+        margin: 0 0 20px 0;
+        align-self: flex-start;
+
+        &::before {
+            content: '01';
+            font-size: 30px;
+            margin-right: 10px;
+        }
+    }
+
+    .__order__choose-filling__img {
+        @include bg();
+        background-image: url('../images/construct-cake-mob.jpg');
+        min-width: 241px;
+        width: 100%;
+        height: 113px;
+        position: relative;
+    }
+
+    .__order__choose-filling__img__count, .__order__design__img__count {
+        color: $menu-color;
+        font-size: 12px;
+        margin: 0;
+        position: absolute;
+        bottom: 7px;
+        right: 7px;
+    }
+
+    .__choose-filling__paginator, .__design__paginator {
+        @include flexbox(row);
+        margin: 10px 0 20px 0;
+    }
+
+    .__size__paginator {
+        @include flexbox(row);
+        margin: 45px 0 15px 0;
+    }
+
+    .__choose-filling__paginator__item, .__design__paginator__item {
+        margin-right: 5px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $paginator-color;
+
+        &:first-child {
+            background-color: $btn-color;
+            width: 8px;
+            height: 8px;
+        }
+
+        &:last-child {
+            margin-right: 0;
+            width: 4px;
+            height: 4px;
+        }
+
+        &:active {
+            background-color: $btn-color;
+            width: 8px;
+            height: 8px;
+        }
+    }
+
+    .__paginator__item__link {
+        display: block;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+    }
+
+    .__choose-filling__description {
+        @include flexbox(column);
+    }
+
+    .__choose-filling__filling-type {
+        font-size: 16px;
+        align-self: flex-start;
+        margin: 0 0 10px 0;
+    }
+
+    .__choose-filling__paragraph {
+        margin: 0 0 20px 0;
+        min-width: 185px;
+        align-self: flex-start;
+    }
+
+    .__choose-filling__price {
+        margin: 0 0 20px 0;
+        font-family: 'Playfair Display', 'Arial', 'Sans serif';
+        font-size: 18px;
+    }
+
+    .__choose-filling__btn, .__size__btn, .__design__btn {
+        @include btn();
+        width: 180px;
+        height: 50px;
+    }
+
+    .__order__size__tittle {
+        margin: 0;
+
+        &::before {
+            content: '02';
+        }
+    }
+
+    .main__order__size-choose {
+        padding-top: 50px;
+    }
+
+    .__order__size__border {
+        @include border(110px);
+    }
+
+    .__order__size__border__count {
+        font-size: 16px;
+        margin: auto;
+        color: $filling-color;
+    }
+
+    .__size__paginator__item {
+        margin-right: 5px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $paginator-color;
+
+        &:first-child {
+            background-color: $btn-color;
+            width: 8px;
+            height: 8px;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:active {
+            background-color: $btn-color;
+            width: 8px;
+            height: 8px;
+        }
+    }
+
+    .__order__size__border-choose__paragraph {
+        color: $filling-color;
+        margin: 0;
+    }
+
+    .__size__btn {
+        margin-top: 55px;
+    }
+
+}
+
+.__order__design__tittle {
+    margin-bottom: 30px;
+
+    &::before {
+        content: '03';
+    }
+}
+
+.__order__design__img {
+    @include bg();
+    background-image: url('../images/design-cake-marshmellow-mob.jpg');
+    width: 169px;
+    height: 196px;
+    box-shadow: 0px 2px 4px 1px $shadow-color;
+    position: relative;
+}
+
+.__order__design__img__count {
+    color: $filling-color;
+}
+
+.__design__type {
+    margin: 0;
+}
+
+.__design__price {
+    font-size: 18px;
+    font-family: 'Playfair Display', 'Arial', 'Sans serif';
+    margin: 10px 0 30px 0;
+}
+
+.main__order__design__form {
+    @include flexbox(column);
+    width: 100%;
+    margin-top: 40px;
+}
+
+.__design__form__tittle {
+    font-family: 'Playfair Display', 'Arial', 'Sans serif';
+    font-size: 22px;
+    align-self: flex-start;
+    margin: 0 0 15px 0;;
+}
+
+.__design__form__label {
+    font-family: 'Intro Script R H2 Base', 'Arial', 'Sans serif';
+    font-size: 20px;
+    color: $btn-color;
+}
+
+.order-form {
+    margin: 10px 0 15px 0;
+    min-width: 243px;
+    width: 100%;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid $paginator-color;
+    text-align: center;
+}
+
+.order-form__btn {
+    @include btn();
+    width: 225px;
+    height: 50px;
+    margin-top: 15px;
+}
+
+.main__order__btn {
+    display: none;
+}
+
+.__order__size--2kg,
+.__order__size--5kg,
+.__order__size--8kg {
+    display: none;
+}
+
+/*Tablet styles*/
+
+@media (min-width: 768px) {
+
+    .header__logo {
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+    .header__phone {
+        display: block;
+        margin: auto;
+        margin-right: 0;
+        font-size: 15px;
+        font-weight: bold;
+        color: $header-tittle-color;
+    }
+
+    .header__menu {
+        justify-content: flex-start;
+    }
+
+    .header__navigator {
+        min-height: 60px;
+    }
+
+    .header__navigator__menu {
+        width: 320px;
+        left: 0;
+    }
+
+    .header {
+        background-image: url('../images/header-cake-tab.png');
+        background-position: right 70px;
+        min-width: 499px;
+        background-size: auto;
+    }
+
+    .header__description {
+        align-items: flex-start;
+    }
+
+    .header__description__tittle {
+        text-align: left;
+        font-size: 60px;
+        line-height: 55px;
+        width: 250px;
+    }
+
+    .__advantages__tittle {
+        font-size: 36px;
+        line-height: 78px;
+    }
+
+    .header__description__advantages {
+        order: 1;
+        margin-top: 150px;
+        @include flexbox(row);
+    }
+
+    .__advantages__paragraph {
+        height: 55px;
+        padding-left: 60px;
+        line-height: 18px;
+    }
+
+    .__advantages__paragraph-ingredients {
+        margin-bottom: 0;
+        margin-right: 70px;
+        width: 100px;
+        padding-top: 10px;
+
+        &::before {
+            background-image: url('../images/header-ingridients-tab.png');
+            width: 55px;
+            height: 55px;
+        }
+    }
+
+    .__advantages__paragraph-delivery {
+        width: 160px;
+        padding-top: 10px;
+
+        &::before {
+            background-image: url('../images/header-delivery-tab.png');
+            width: 55px;
+            height: 54px;
+        }
+
+    }
+
+    .header__button {
+        margin-top: 50;
+    }
+
+    .main__our-cakes__tittle {
+        align-self: flex-start;
+        margin-bottom: 35px;
+    }
+
+    .main__our-cakes__type-of-cakes {
+        @include flexbox(row);
+        margin-bottom: 20px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .cacke {
+        min-width: 288px;
+        height: 184px;
+    }
+
+    .__type-of-cakes--classic {
+        background-image: url('../images/classic-cake-tab.jpg');
+        height: 388px;
+        min-width: 419px;
+        margin: 0 20px 0 0;
+    }
+
+    .__type-of-cakes--muss {
+        background-image: url('../images/muss-cake-tab.jpg');
+        margin-bottom: 20px;
+    }
+
+    .__type-of-cakes--childrens {
+        background-image: url('../images/childs-cake-tab.jpg');
+        height: 388px;
+        min-width: 419px;
+        margin-left: 20px;
+    }
+
+    .__type-of-cakes--weding {
+        background-image: url('../images/weding-cake-tab.jpg');
+        margin: 0;
+    }
+
+    .__type-of-cakes--mens {
+        background-image: url('../images/mens-cake-tab.jpg');
+        margin-bottom: 20px;
+    }
+
+    .__type-of-cakes--womens {
+        background-image: url('../images/womens-cake-tab.jpg');
+        margin-bottom: 0;
+    }
+
+    .main__order__choose-filling {
+        position: relative;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        @include flexbox(row);
+        justify-content: space-around;
+    }
+
+    .main__order__tittle {
+        font-size: 28px;
+        width: 100%;
+    }
+
+    .wrapper {
+        padding-right: 10%;
+        padding-left: 10%;
+    }
+
+    .main__order__paragraph {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    .__choose-filling__paginator {
+        display: none;
+    }
+
+    .__choose-filling__description {
+        @include flexbox(column);
+    }
+
+    .__order__choose-filling__tittle {
+        width: 90px;
+        font-size: 18px;
+        position: relative;
+        padding-top: 40px;
+        margin: 0;
+        
+        &::before {
+            font-size:36px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .__order__choose-filling__img {
+        background-image: url('../images/constract-cake-tab.jpg');
+        width: 210px;
+        height: 239px;
+        margin-right: 3%;
+        position: static;
+    }
+
+    .__order__choose-filling__img__count {
+        color: $filling-color;
+        right: 40px;
+        bottom: 50px;
+    }
+
+    .__choose-filling__filling-type  {
+        font-size: 18px;
+    }
+
+    .__choose-filling__price {
+        font-size: 20px;
+        align-self: flex-start;
+    }
+
+    .__choose-filling__btn {
+        align-self: flex-start;
+        width: 135px;
+        height: 43px;
+    }
+
+    .main__order__btn {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: $menu-color;
+        box-shadow: 0 1px 2px $btn-shodow-color;
+        border: none;
+        flex-shrink: 0;
+        @include bg();
+        background-size: auto;
+        cursor: pointer;
+    }
+
+    .previous-btn {
+        margin-right: 5%;
+        background-image: url('../images/previous-bt.png');
+    }
+
+    .next-btn {
+        background-image: url('../images/next-bt.png');
+        /*margin-left: 40px;*/
+    }
+
+    .__order__size__tittle {
+        position: relative;
+        font-size: 18px;
+        padding-top: 40px;
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 36px;
+        }
+    }
+
+    .main__order__size-choose {
+        @include flexbox(row);
+        justify-content: space-around;
+        align-items: flex-end;
+        width: 100%;
+        padding-top: 0;
+        max-width: 900px;
+    }
+
+    .__size__paginator {
+        display: none;
+    }
+
+    .__order__size--2kg {
+        display: block;
+
+    }
+
+    .__order__size__border {
+        width: 77px;
+        height: 77px;
+        margin-bottom: 25px;
+    }
+
+    .__order__size__border2 {
+        @include border(107px);
+        margin-bottom: 25px;
+    }
+
+    .__order__size--5kg {
+        display: block;
+    }
+
+    .__order__size__border3 {
+        @include border(120px);
+        margin-bottom: 25px;
+    }
+
+    .__order__size__border3-2 {
+        @include border(84px);
+    }
+
+    .__order__size--8kg {
+        display: block;
+    }
+
+    .__order__size__8kg-border {
+        @include border(140px);
+        margin-bottom: 25px;
+    }
+
+    .__order__size__8kg-border2 {
+        @include border(98px);
+    }
+
+    .__order__size__8kg-border3 {
+        @include border(67px);
+    }
+
+    .__order__size__border-choose__paragraph {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .__size__btn {
+        display: none;
+    }
+
+}
+
+/*Desktop*/
+
+@media (min-width: 1220px) {
+    .header {
+        background-image: url('../images/header-cake-pc.png');
+        min-width: 1013px;
+        min-height: 1000px;
+    }
+
+    .header__menu {
+        background-color: transparent;
+        justify-content: flex-start;
+    }
+
+    .header__logo {
+        font-size: 24px;
+        line-height: 26px;
+    }
+
+    .header__navigator {
+        margin-left: 50px;
+
+        &:hover .header__navigator__menu {
+            display: flex;
+        }
+    }
+
+    .header__navigator__button {
+        display: none;
+    }
+
+    .header__navigator__menu {
+        @include flexbox(row);
+        justify-content: flex-start;
+        position: static;
+        width: 100%;
+    }
+
+    .__navigator__menu__item {
+        background-color: transparent;
+        border-bottom: none;
+        font-size: 13px;
+        margin-right: 45px;
+        
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .__menu__list__link {
+        height: 100%;
+        width: 100%;
+    }
+
+    .header__description__tittle {
+        font-size: 78px;
+        line-height: 70px;
+        width: 350px;
+    }
+
+    .main__our-cakes__type-of-cakes {
+        margin-bottom: 40px;
+        max-width: 1220px;
+    }
+
+    .__advantages__tittle {
+        font-size: 40px;
+        line-height: 78px;
+    }
+
+    .main__our-cakes__tittle {
+        font-size: 40px;
+    }
+
+    .__type-of-cakes--classic {
+        background-image: url('../images/classic-cake-pc.jpg');
+        min-width: 696px;
+        height: 652px;
+        margin-right: 40px;
+        position: relative;
+    }
+
+    .__type-of-cakes--muss {
+        background-image: url('../images/muss-cake-pc.jpg');
+        min-width: 484px;
+        height: 305px;
+        margin-bottom: 40px;
+    }
+
+    .__type-of-cakes--weding {
+        background-image: url('../images/weding-cake-pc.jpg');
+        min-width: 484px;
+        height: 304px;
+    }
+
+    .__type-of-cakes--childrens {
+        background-image: url('../images/childs-cake-pc.jpg');
+        min-width: 697px;
+        height: 652px;
+        margin-left: 40px;
+    }
+
+    .__type-of-cakes--mens {
+        background-image: url('../images/mens-cake-pc.jpg');
+        min-width: 484px;
+        height: 305px;
+        margin-bottom: 40px;
+    }
+
+    .__type-of-cakes--womens {
+        background-image: url('../images/womens-cake-pc.jpg');
+        min-width: 484px;
+        height: 305px;
+    }
+
+    .cacke {
+        position: relative;
+    }
+
+    .__type-of-cakes--link {
+        display: block;
+        position: absolute;
+        right: 70px;
+        bottom:35px;
+        padding-right: 40px;
+        font-size: 20px;
+        line-height: 22px;
+        color: $header-tittle-color;
+
+        &::after {
+            content: '';
+            width: 17px;
+            height: 12px;
+            @include bg();
+            background-image: url('../images/arow.png');
+            bottom: 20%;
+            right: 0;
+            position: absolute;
+            
+        }
+    }
+
+    .main__order__tittle {
+        font-size: 40px;
+        line-height: 42px;
+        margin-bottom: 15px;
+    }
+
+    .main__order__paragraph {
+        font-size: 36px;
+        line-height: 38px;
+        margin-bottom: 50px;
+    }
+
+    .__order__choose-filling__tittle {
+        font-size: 27px;
+        padding-top: 60px;
+        line-height: 30px;
+
+        &::before {
+            font-size: 65px;
+        }
+    }
+
+    .main__order__btn {
+        box-shadow: none;
+    }
+
+    .__order__choose-filling__img {
+        border-image: url('../images/construck-cake-pc.jpg');
+        min-width: 343px;
+        height: 390px;
+    }
+
+    .__order__choose-filling__img__count {
+        font-size: 18px;
+        right: 130px;
+        bottom: 90px;
+    }
+
+    .__choose-filling__filling-type {
+        font-size: 20px;
+    }
+
+    .__choose-filling__paragraph {
+        font-size: 18px;
+        max-width: 270px;
+        margin-bottom: 30px;
+    }
+
+    .__choose-filling__price {
+        font-size: 22px;
+        margin-bottom: 50px;
+    }
+
+    .__choose-filling__btn {
+        width: 180px;
+        height: 50px;
+        font-size: 13px;
+    }
+
+    .main__order__choose-filling {
+        padding-top: 70px;
+        padding-bottom: 90px;
+        margin-bottom: 35px;
+        box-shadow: 0 5px 13px rgba(163,6,60,0.1);
+    }
+
+    .__order__size__tittle {
+        font-size: 27px;
+        width: 100px;
+        line-height: 30px;
+        padding-top: 60px;
+
+        &::before {
+            font-size: 65px;
+        }
+    }
+
+    .main__order__size {
+        padding-top: 70px;
+        padding-bottom: 150px;
+        margin-bottom: 35px;
+        box-shadow: 0 5px 13px rgba(163,6,60,0.1);
+    }
+
+    .__order__size__border {
+        width: 110px;
+        height: 110px;
+    }
+
+    .__order__size__border2 {
+        width: 154px;
+        height: 154px;
+    }
+
+    .__order__size__border-choose__paragraph {
+        font-size: 18px;
+    }
+
+    .__order__size__border__count {
+        font-size: 18px;
+    }
+
+    .__order__size__border3 {
+        width: 174px;
+        height: 174px;
+    }
+
+    .__order__size__border3-2 {
+        width: 120px;
+        height: 120px;
+    }
+
+    .__order__size__8kg-border {
+        width: 200px;
+        height: 200px;
+    }
+
+    .__order__size__8kg-border2 {
+        width: 140px;
+        height: 140px;
+    }
+
+    .__order__size__8kg-border3 {
+        width: 96px;
+        height: 96px;
+    }
+
+    .main__order__design {
+        box-shadow: 0 5px 13px rgba(163,6,60,0.1);
+    }
+
+}
